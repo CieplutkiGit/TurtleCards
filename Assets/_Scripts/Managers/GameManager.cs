@@ -5,7 +5,7 @@ public class GameManager : Singleton<GameManager>
 {
     public enum GameState{
         Starting = 0,
-        Enum1 = 1,
+        GenerateMap = 1,
         Enum2 = 2,
         Enum3 = 3, 
     }
@@ -19,13 +19,16 @@ public class GameManager : Singleton<GameManager>
 
     public void ChangeState(GameState newState)
     {
-        if(State == newState) return;
         OnBeforeStateChanged?.Invoke(newState);
+       
   
         State = newState;
         switch(newState){
             case GameState.Starting:
                 HandleStarting();
+            break;
+            case GameState.GenerateMap:
+                GenerateMap();
             break;
             default:
             throw new ArgumentOutOfRangeException(nameof(newState),newState,null);
@@ -34,6 +37,12 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleStarting()
     {
-        ChangeState(GameState.Enum1);
+        ChangeState(GameState.GenerateMap);
+    }
+
+    private void GenerateMap()
+    {
+            MapManager.Instance.GenerateMap();
+            ChangeState(GameState.Enum2);
     }
 }
