@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3b236d431bfd948997f47a9b838474, type: 3}
+  m_Name: Card3
+  m_EditorClassIdentifier: 
+  cardName: Turtle3
+  cardID: 2
+  manaCost: 1
+  maxHealth: 100
+  attackDamage: 10
+  attackRange: 1
+  cardSplashArt: {fileID: 0}
+  cardModel: {fileID: 0}
+  cardModelMaterial: {fileID: 0}

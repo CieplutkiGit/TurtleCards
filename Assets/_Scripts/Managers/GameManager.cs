@@ -7,7 +7,7 @@ public class GameManager : Singleton<GameManager>
         Starting = 0,
         GenerateMap = 1,
         CenterCamera = 2,
-        Enum3 = 3, 
+        LoadCards = 3, 
     }
 
     public static event Action<GameState> OnBeforeStateChanged;
@@ -33,6 +33,9 @@ public class GameManager : Singleton<GameManager>
             case GameState.CenterCamera:
                 CenterCamera();
             break;
+            case GameState.LoadCards:
+                LoadCards();
+            break;
             default:
             throw new ArgumentOutOfRangeException(nameof(newState),newState,null);
         }
@@ -46,11 +49,20 @@ public class GameManager : Singleton<GameManager>
     private void GenerateMap()
     {
             MapManager.Instance.GenerateMap();
+            
             ChangeState(GameState.CenterCamera);
     }
 
     private void CenterCamera()
     {
-        CameraManager.Instance.CenterCamera();
+        CameraController.Instance.CenterCamera();
+
+        ChangeState(GameState.LoadCards);
+    }
+
+    private void LoadCards()
+    {
+        CardsManager.Instance.GetPlayerCards();
+        UIController.Instance.SpawnCards();
     }
 }

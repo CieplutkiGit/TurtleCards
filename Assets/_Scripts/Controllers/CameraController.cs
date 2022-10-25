@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraManager : Singleton<CameraManager>
+public class CameraController : Singleton<CameraController>
 {
     public float _buffer;
 
