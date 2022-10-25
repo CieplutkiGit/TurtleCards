@@ -6,7 +6,7 @@ public class GameManager : Singleton<GameManager>
     public enum GameState{
         Starting = 0,
         GenerateMap = 1,
-        Enum2 = 2,
+        CenterCamera = 2,
         Enum3 = 3, 
     }
 
@@ -30,6 +30,9 @@ public class GameManager : Singleton<GameManager>
             case GameState.GenerateMap:
                 GenerateMap();
             break;
+            case GameState.CenterCamera:
+                CenterCamera();
+            break;
             default:
             throw new ArgumentOutOfRangeException(nameof(newState),newState,null);
         }
@@ -43,6 +46,11 @@ public class GameManager : Singleton<GameManager>
     private void GenerateMap()
     {
             MapManager.Instance.GenerateMap();
-            ChangeState(GameState.Enum2);
+            ChangeState(GameState.CenterCamera);
+    }
+
+    private void CenterCamera()
+    {
+        CameraManager.Instance.CenterCamera();
     }
 }

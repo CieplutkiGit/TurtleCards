@@ -10,13 +10,16 @@ public class MapManager : Singleton<MapManager>
 
     public GameObject tilePrefab;
 
+    public List<Collider> tilesColliders;
+
     public void GenerateMap()
     {
         for (int i = 0; i < fieldsX; i++)
         {
             for (int j = 0; j < fieldsZ; j++)
             {
-                Instantiate(tilePrefab, new Vector3(i, 0,j), Quaternion.identity);
+                GameObject newTile = Instantiate(tilePrefab, new Vector3(i, 0,j), Quaternion.identity);
+                tilesColliders.Add(newTile.GetComponent<Collider>());
             }
         }
     }
