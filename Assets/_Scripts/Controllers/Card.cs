@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    int cardID;
+    public int cardID;
 
-    Sprite cardSplashArt;
+    public Sprite cardSplashArt;
 }
