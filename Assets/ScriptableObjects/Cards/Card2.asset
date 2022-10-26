@@ -14,10 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Turtle2
   cardID: 1
-  manaCost: 1
-  maxHealth: 100
-  attackDamage: 10
-  attackRange: 1
   cardSplashArt: {fileID: 0}
-  cardModel: {fileID: 0}
-  cardModelMaterial: {fileID: 0}
+  unit: {fileID: 11400000, guid: 0e566868e9438144c981eec3ec193222, type: 2}

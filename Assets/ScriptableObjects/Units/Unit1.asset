@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3b236d431bfd948997f47a9b838474, type: 3}
-  m_Name: Card1
+  m_Script: {fileID: 11500000, guid: a0049a01a58297d4fad6192654055d0f, type: 3}
+  m_Name: Unit1
   m_EditorClassIdentifier: 
-  cardName: Turtle
-  cardID: 0
-  cardSplashArt: {fileID: 0}
-  unit: {fileID: 11400000, guid: cb4741a3541164e47b6a2d8da5acce64, type: 2}
+  maxHealth: 100
+  attackDamage: 10
+  attackRange: 1
+  unitPrefab: {fileID: 3416135128270990731, guid: 55400e6e4a3d4bf438e1943b0de834dd, type: 3}

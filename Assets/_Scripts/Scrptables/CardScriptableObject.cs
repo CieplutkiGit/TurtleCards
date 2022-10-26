@@ -11,13 +11,7 @@ public class CardScriptableObject : ScriptableObject
 
     public int cardID;
 
-    public float maxHealth;
-
-    public float attackDamage;
-
-    public float attackRange;
-
     public Sprite cardSplashArt;
 
-    public UnitScriptableObject unit; //to do przeniesc floaty do nowego scriptable obiekta ktory bedzie tu przypisany i zniego spawnowac
+    public UnitScriptableObject unit;
 }
