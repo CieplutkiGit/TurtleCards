@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0049a01a58297d4fad6192654055d0f, type: 3}
   m_Name: Unit2
   m_EditorClassIdentifier: 
+  attackMode: 0
   maxHealth: 100
   attackDamage: 10
+  attackRate: 1
   attackRange: 1
+  moveSpeed: 0.5
+  enemyBase: {fileID: 3806756083617214794, guid: bc0b49a3ee2da9c48a70d2ee09a337ac, type: 3}
+  playerBase: {fileID: 7641909275606305680, guid: 0d216202b009ab54aa4e45cb883496f3, type: 3}
   unitPrefab: {fileID: 3416135128270990731, guid: 55400e6e4a3d4bf438e1943b0de834dd, type: 3}

@@ -36,9 +36,10 @@ public class Card : MonoBehaviour
     {
         if(transform.position.z < startPosition.z + dropOffset)
         return;
-        Debug.Log("droping card "+cardID);
         Destroy(this.transform.gameObject);
-        Instantiate(unit.unitPrefab,transform.position,Quaternion.identity);
-
+        GameObject newUnit = Instantiate(unit.unitPrefab,transform.position,Quaternion.identity);
+        
+        newUnit.GetComponent<UnitBase>().unitData =unit;
+        newUnit.GetComponent<UnitBase>().isPlayer = true;
     }
 }
