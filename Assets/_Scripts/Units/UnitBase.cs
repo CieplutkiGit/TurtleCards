@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitBase : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class UnitBase : MonoBehaviour
 
     public bool isPlayer;
 
+    Image healthBar;
+
+
     private void Start()
     {
         maxHealth = unitData.maxHealth;
@@ -40,6 +44,8 @@ public class UnitBase : MonoBehaviour
         {
             enemyBase = unitData.playerBase;
         }
+
+        healthBar = GetComponentInChildren<Image>();
     }
 
     private void Update()
@@ -72,6 +78,9 @@ public class UnitBase : MonoBehaviour
         {
             if(enemy.GetComponent<UnitBase>())
             enemy.GetComponent<UnitBase>().TakeDamage(attackDamage);
+            else if(enemy.GetComponent<BuildingBase>())
+                enemy.GetComponent<BuildingBase>().TakeDamage(attackDamage);
+
             timeToNextAttack = attackRate;
         }
     }
@@ -79,9 +88,14 @@ public class UnitBase : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        UpdateHealthBar();
         if (health <= 0) Die();
     }
 
+    void UpdateHealthBar()
+    {
+        healthBar.fillAmount = health / maxHealth;
+    }
     void Die()
     {
         Destroy (gameObject);

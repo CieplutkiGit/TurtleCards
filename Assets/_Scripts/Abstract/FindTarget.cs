@@ -21,6 +21,14 @@ public abstract class FindTarget : MonoBehaviour
                 else if(!isPlayer&&item.GetComponent<UnitBase>().isPlayer)
                     targets.Add(item.transform);
             }
+
+            if (item.GetComponent<BuildingBase>())
+            { 
+                if (isPlayer&&!item.GetComponent<BuildingBase>().isPlayer)
+                  targets.Add(item.transform);
+                else if(!isPlayer&&item.GetComponent<BuildingBase>().isPlayer)
+                    targets.Add(item.transform);
+            }
         }
 
         if (targets.Count ==0)

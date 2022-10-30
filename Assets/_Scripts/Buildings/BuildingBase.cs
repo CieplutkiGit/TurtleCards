@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingBase : MonoBehaviour
 {
     public BuildingScriptableObject buildingData;
+
     float maxHealth;
 
     float health;
@@ -21,6 +23,8 @@ public class BuildingBase : MonoBehaviour
 
     public bool isPlayer;
 
+    Image healthBar;
+
     private void Start()
     {
         maxHealth = buildingData.maxHealth;
@@ -29,5 +33,24 @@ public class BuildingBase : MonoBehaviour
         attackRange = buildingData.attackRange;
 
         health = maxHealth;
+
+        healthBar = GetComponentInChildren<Image>();
+    }
+
+        public void TakeDamage(float damage)
+    {
+        health -= damage;
+        UpdateHealthBar();
+        if (health <= 0) Die();
+    }
+
+    void UpdateHealthBar()
+    {
+        healthBar.fillAmount = health / maxHealth;
+    }
+    void Die()
+    {
+        Destroy (gameObject);
+        Debug.Log("baseDestroyed");
     }
 }
