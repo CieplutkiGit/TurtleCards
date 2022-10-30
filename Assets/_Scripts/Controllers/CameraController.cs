@@ -24,6 +24,7 @@ public class CameraController : Singleton<CameraController>
         bounds.Expand (_buffer);
 
         float vertical = bounds.size.y;
+
         float horizontal = bounds.size.x * _cam.pixelHeight / _cam.pixelWidth;
 
         float size = Mathf.Max(horizontal, vertical) * 0.5f;

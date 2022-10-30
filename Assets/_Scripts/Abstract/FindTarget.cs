@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public abstract class FindTarget : MonoBehaviour
 {
-    public static (Transform target,bool hasTarget)  GetTarget (Transform transform,bool isPlayer,float attackRange)
+    public static (Transform transform,bool hasTarget)  GetTarget (Transform transform,bool isPlayer,float attackRange)
     {
         Collider[] objectsInRange =
             Physics.OverlapSphere(transform.position, attackRange);
@@ -19,14 +19,6 @@ public abstract class FindTarget : MonoBehaviour
                 if (isPlayer&&!item.GetComponent<UnitBase>().isPlayer)
                   targets.Add(item.transform);
                 else if(!isPlayer&&item.GetComponent<UnitBase>().isPlayer)
-                    targets.Add(item.transform);
-            }
-
-            if (item.GetComponent<BuildingBase>())
-            { 
-                if (isPlayer&&!item.GetComponent<BuildingBase>().isPlayer)
-                  targets.Add(item.transform);
-                else if(!isPlayer&&item.GetComponent<BuildingBase>().isPlayer)
                     targets.Add(item.transform);
             }
         }

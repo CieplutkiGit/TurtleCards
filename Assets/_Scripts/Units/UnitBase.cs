@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +27,7 @@ public class UnitBase : MonoBehaviour
 
     Image healthBar;
 
+    bool isBuilding;
 
     private void Start()
     {
@@ -37,50 +37,49 @@ public class UnitBase : MonoBehaviour
         attackRange = unitData.attackRange;
         moveSpeed = unitData.moveSpeed;
         enemyBase = unitData.enemyBase;
+        isBuilding = unitData.isBuilding;
 
         health = maxHealth;
 
-        if (!isPlayer)
-        {
-            enemyBase = unitData.playerBase;
-        }
+        if (!isPlayer) enemyBase = unitData.playerBase;
 
         healthBar = GetComponentInChildren<Image>();
     }
 
     private void Update()
     {
-        var target = FindTarget.GetTarget(transform, isPlayer,attackRange);
-        if(target.hasTarget)
-            MoveToTarget(target.target);
+        var target = FindTarget.GetTarget(transform, isPlayer, attackRange);
+        if (!isBuilding)
+        {
+            if (target.hasTarget)
+                MoveToTarget(target.transform);
             else
-            MoveToTarget(enemyBase);
+                MoveToTarget(enemyBase);
+        }
+        else if (target.hasTarget)
+            Attack(target.transform);
+
         if (timeToNextAttack > 0) timeToNextAttack -= 1 * Time.deltaTime;
     }
 
     void MoveToTarget(Transform target)
     {
-        
-        if (Vector3.Distance(transform.position, target.position) <= attackRange)
+        if (Vector3.Distance(transform.position, target.position) <= attackRange
+        )
             Attack(target);
-            else
+        else
             transform.position =
-            Vector3
-                .MoveTowards(transform.position,
-                target.position,
-                moveSpeed * Time.deltaTime);
-
+                Vector3
+                    .MoveTowards(transform.position,
+                    target.position,
+                    moveSpeed * Time.deltaTime);
     }
 
     void Attack(Transform enemy)
     {
         if (timeToNextAttack <= 0)
         {
-            if(enemy.GetComponent<UnitBase>())
             enemy.GetComponent<UnitBase>().TakeDamage(attackDamage);
-            else if(enemy.GetComponent<BuildingBase>())
-                enemy.GetComponent<BuildingBase>().TakeDamage(attackDamage);
-
             timeToNextAttack = attackRate;
         }
     }
@@ -92,10 +91,8 @@ public class UnitBase : MonoBehaviour
         if (health <= 0) Die();
     }
 
-    void UpdateHealthBar()
-    {
-        healthBar.fillAmount = health / maxHealth;
-    }
+    void UpdateHealthBar() => healthBar.fillAmount = health / maxHealth;
+
     void Die()
     {
         Destroy (gameObject);

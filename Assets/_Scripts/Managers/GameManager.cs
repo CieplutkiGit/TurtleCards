@@ -1,43 +1,46 @@
 using System;
-using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public enum GameState{
+    public enum GameState
+    {
         Starting = 0,
         GenerateMap = 1,
         CenterCamera = 2,
-        LoadCards = 3, 
+        LoadCards = 3
     }
 
     public static event Action<GameState> OnBeforeStateChanged;
+
     public static event Action<GameState> OnAfterStateChanged;
 
-    public GameState State {get; private set;}
+    public GameState State { get; private set; }
 
-    private void Start()=>ChangeState(GameState.Starting);
+    private void Start() => ChangeState(GameState.Starting);
 
     public void ChangeState(GameState newState)
     {
         OnBeforeStateChanged?.Invoke(newState);
-       
-  
+
         State = newState;
-        switch(newState){
+        switch (newState)
+        {
             case GameState.Starting:
                 HandleStarting();
-            break;
+                break;
             case GameState.GenerateMap:
                 GenerateMap();
-            break;
+                break;
             case GameState.CenterCamera:
                 CenterCamera();
-            break;
+                break;
             case GameState.LoadCards:
                 LoadCards();
-            break;
+                break;
             default:
-            throw new ArgumentOutOfRangeException(nameof(newState),newState,null);
+                throw new ArgumentOutOfRangeException(nameof(newState),
+                    newState,
+                    null);
         }
     }
 
@@ -48,9 +51,9 @@ public class GameManager : Singleton<GameManager>
 
     private void GenerateMap()
     {
-            MapManager.Instance.GenerateMap();
-            
-            ChangeState(GameState.CenterCamera);
+        MapManager.Instance.GenerateMap();
+
+        ChangeState(GameState.CenterCamera);
     }
 
     private void CenterCamera()

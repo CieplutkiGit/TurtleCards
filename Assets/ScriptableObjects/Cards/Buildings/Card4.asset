@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3b236d431bfd948997f47a9b838474, type: 3}
   m_Name: Card4
   m_EditorClassIdentifier: 
-  cardType: 1
   cardName: Building
   cardID: 4
   cardSplashArt: {fileID: 0}
-  unit: {fileID: 0}
-  building: {fileID: 11400000, guid: d551d3d84341a57249c848abeb2f8262, type: 2}
+  unit: {fileID: 11400000, guid: 5c94562cfa412cc90adaae36f7101326, type: 2}
