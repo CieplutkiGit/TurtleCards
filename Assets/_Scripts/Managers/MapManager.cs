@@ -20,6 +20,19 @@ public class MapManager : Singleton<MapManager>
             {
                 GameObject newTile = Instantiate(tilePrefab, new Vector3(i, 0,j), Quaternion.identity);
                 tilesColliders.Add(newTile.GetComponent<Collider>());
+                if (i % 2 == 0 && j % 2==0)
+                {
+                    newTile.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                }
+                else if(j % 2==1 && i%2==1)
+                { 
+                    newTile.GetComponent<MeshRenderer>().material.color = Color.yellow;
+
+                }
+                else
+                { 
+                   newTile.GetComponent<MeshRenderer>().material.color = Color.green;  
+                }
             }
         }
     }
