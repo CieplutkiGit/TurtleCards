@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
+using System.Reflection;
 
 public class Card : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class Card : MonoBehaviour
 
     public Sprite cardSplashArt;
     public UnitScriptableObject unit;
+    public BuildingScriptableObject building;
     public Canvas canvas;
 
     public float dropOffset;
@@ -37,9 +40,23 @@ public class Card : MonoBehaviour
         if(transform.position.z < startPosition.z + dropOffset)
         return;
         Destroy(this.transform.gameObject);
-        GameObject newUnit = Instantiate(unit.unitPrefab,transform.position,Quaternion.identity);
-        
-        newUnit.GetComponent<UnitBase>().unitData =unit;
-        newUnit.GetComponent<UnitBase>().isPlayer = true;
+
+        if (unit)
+        {
+            GameObject newUnit = Instantiate(unit.unitPrefab, transform.position, Quaternion.identity);
+
+            newUnit.GetComponent<UnitBase>().unitData = unit;
+
+            newUnit.GetComponent<UnitBase>().isPlayer = true;
+        }
+        else 
+        {
+            GameObject newBuilding = Instantiate(building.buildPrefab, transform.position, Quaternion.identity);
+
+            newBuilding.GetComponent<BuildingBase>().buildingData = building;
+
+            newBuilding.GetComponent<BuildingBase>().isPlayer = true;
+        }
     }
+
 }

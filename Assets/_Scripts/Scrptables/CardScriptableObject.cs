@@ -7,6 +7,14 @@ using UnityEngine;
 ]
 public class CardScriptableObject : ScriptableObject
 {
+    public CardType cardType;
+
+    public enum CardType
+    {
+        unit,
+        building
+    }
+
     public string cardName;
 
     public int cardID;
@@ -14,4 +22,5 @@ public class CardScriptableObject : ScriptableObject
     public Sprite cardSplashArt;
 
     public UnitScriptableObject unit;
+    public BuildingScriptableObject building;
 }

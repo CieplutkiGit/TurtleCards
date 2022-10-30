@@ -17,6 +17,7 @@ public class UIController : Singleton<UIController>
             CardScript.cardSplashArt = CardsManager.Instance.playerCards[i].cardSplashArt;
             CardScript.canvas = mainCanvas;
             CardScript.unit = CardsManager.Instance.playerCards[i].unit;
+            CardScript.building = CardsManager.Instance.playerCards[i].building;
         }
     }
 

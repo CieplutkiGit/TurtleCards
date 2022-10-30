@@ -17,8 +17,6 @@ public class UnitBase : MonoBehaviour
 
     float attackRange;
 
-    bool attackMode;
-
     float moveSpeed;
 
     Transform enemyBase;
@@ -27,15 +25,12 @@ public class UnitBase : MonoBehaviour
 
     public bool isPlayer;
 
-    string enemyTag;
-
     private void Start()
     {
         maxHealth = unitData.maxHealth;
         attackDamage = unitData.attackDamage;
         attackRate = unitData.attackRate;
         attackRange = unitData.attackRange;
-        attackMode = unitData.attackMode;
         moveSpeed = unitData.moveSpeed;
         enemyBase = unitData.enemyBase;
 
@@ -49,81 +44,33 @@ public class UnitBase : MonoBehaviour
 
     private void Update()
     {
-        FindTarget();
-
+        var target = FindTarget.GetTarget(transform, isPlayer,attackRange);
+        if(target.hasTarget)
+            MoveToTarget(target.target);
+            else
+            MoveToTarget(enemyBase);
         if (timeToNextAttack > 0) timeToNextAttack -= 1 * Time.deltaTime;
-    }
-
-    void FindTarget()
-    {
-        Collider[] objectsInRange =
-            Physics.OverlapSphere(transform.position, attackRange);
-
-        if(objectsInRange==null)
-        return;
-
-        List<Transform> targets = new();
-        foreach (var item in objectsInRange)
-        {
-            if(item.GetComponent<UnitBase>())
-            {
-                if (isPlayer&&!item.GetComponent<UnitBase>().isPlayer)
-                {
-                  targets.Add(item.transform);
-                }
-                else if(!isPlayer&&item.GetComponent<UnitBase>().isPlayer)
-                {
-                    targets.Add(item.transform);
-                }
-            }
-        }
-
-        if (targets.Count ==0)
-        {
-            MoveToTarget (enemyBase);
-            return;
-        }
-
-        target = FindClosestEnemy(targets).target;
-        MoveToTarget (target);
-    }
-
-    public (Transform target, bool found)
-    FindClosestEnemy(List<Transform> targets)
-    {
-        Transform closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-
-        foreach (Transform target in targets)
-        {
-            Vector3 diff = target.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
-            {
-                closest = target;
-                distance = curDistance;
-            }
-        }
-        return (closest, true);
     }
 
     void MoveToTarget(Transform target)
     {
-        transform.position =
+        
+        if (Vector3.Distance(transform.position, target.position) <= attackRange)
+            Attack(target);
+            else
+            transform.position =
             Vector3
                 .MoveTowards(transform.position,
                 target.position,
                 moveSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, target.position) <= 1)
-            Attack(target);
     }
 
     void Attack(Transform enemy)
     {
         if (timeToNextAttack <= 0)
         {
+            if(enemy.GetComponent<UnitBase>())
             enemy.GetComponent<UnitBase>().TakeDamage(attackDamage);
             timeToNextAttack = attackRate;
         }

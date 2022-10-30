@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 100
   attackDamage: 10
   attackRate: 1
-  attackRange: 1
+  attackRange: 5
   moveSpeed: 0.5
   enemyBase: {fileID: 3806756083617214794, guid: bc0b49a3ee2da9c48a70d2ee09a337ac, type: 3}
   playerBase: {fileID: 7641909275606305680, guid: 0d216202b009ab54aa4e45cb883496f3, type: 3}

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [
     CreateAssetMenu(
         fileName = "CardScriptableObject",
-        menuName = "ScriptableObjects/Unit")
+        menuName = "ScriptableObjects/Building")
 ]
-public class UnitScriptableObject : ScriptableObject
+public class BuildingScriptableObject : ScriptableObject
 {
     public float maxHealth;
 
@@ -15,11 +16,6 @@ public class UnitScriptableObject : ScriptableObject
 
     public float attackRange;
 
-    public float moveSpeed;
-
-    public Transform enemyBase;
-    public Transform playerBase;
-
-    public GameObject unitPrefab;
+    public GameObject buildPrefab;
 
 }

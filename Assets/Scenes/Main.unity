@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1024,6 +1024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -1094,6 +1095,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7aab400c83bbde04bb2a38a0d414b994, type: 2}
   - {fileID: 11400000, guid: 23f125b6b0ca87f43ba3b80380648b7b, type: 2}
   - {fileID: 11400000, guid: b76651a68de916840846a2f50f3b6fbb, type: 2}
+  - {fileID: 11400000, guid: 44e53083fd8fcaf4f95ca2cef60fb559, type: 2}
   playerCards: []
 --- !u!1 &1367122708
 GameObject:
@@ -1217,6 +1219,7 @@ GameObject:
   - component: {fileID: 1632209216}
   - component: {fileID: 1632209215}
   - component: {fileID: 1632209214}
+  - component: {fileID: 1632209219}
   m_Layer: 0
   m_Name: Enemy (2)
   m_TagString: Enemy
@@ -1314,8 +1317,24 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1632209219
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632209213}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!1 &2048703929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,7 +1477,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2061358663
 Rigidbody:
@@ -1786,7 +1805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7641909275606305680, guid: 0d216202b009ab54aa4e45cb883496f3, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7641909275606305680, guid: 0d216202b009ab54aa4e45cb883496f3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1893,6 +1912,7 @@ GameObject:
   - component: {fileID: 5811728632018927033}
   - component: {fileID: 2573411931178033620}
   - component: {fileID: 6405802335361600840}
+  - component: {fileID: 6405802335361600841}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1913,7 +1933,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6405802335361600840
 MonoBehaviour:
@@ -1929,3 +1949,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitData: {fileID: 11400000, guid: cb4741a3541164e47b6a2d8da5acce64, type: 2}
   isPlayer: 0
+--- !u!54 &6405802335361600841
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5906733598851344076}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
