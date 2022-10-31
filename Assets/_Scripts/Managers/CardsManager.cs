@@ -34,7 +34,6 @@ public class CardsManager : Singleton<CardsManager>
 
     public void SpawnCard()
     {
-        Debug.Log (nextCard);
 
         if (nextCard >= playerCards.Length) nextCard = 0;
 
@@ -42,7 +41,6 @@ public class CardsManager : Singleton<CardsManager>
         {
             if (slots[i] == null)
             {
-                Debug.Log("x" + nextCard);
                 var x = UIController.Instance.SpawnCards(playerCards[nextCard]);
                 slots[i] = x.card;
                 break;
