@@ -99,6 +99,7 @@ this will skip middle row and it ll look like this**
 
 #
 Enemy AI is quite stupid as it only spawn random card in specific area but you can change AI cards spawn area and spawn time in ```SimpleEnemyBot.cs```
+But enemy units work same as yours so be prepared for battle!
 
 # Thats all for now! Will update read me when I add new stuff to this project C:
 
