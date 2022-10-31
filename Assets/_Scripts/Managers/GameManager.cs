@@ -66,6 +66,5 @@ public class GameManager : Singleton<GameManager>
     private void LoadCards()
     {
         CardsManager.Instance.GetPlayerCards();
-        UIController.Instance.SpawnCards();
     }
 }

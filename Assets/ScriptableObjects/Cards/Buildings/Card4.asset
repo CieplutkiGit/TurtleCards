@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Card4
   m_EditorClassIdentifier: 
   cardName: Building
-  cardID: 4
+  cardID: 3
   cardSplashArt: {fileID: 0}
   unit: {fileID: 11400000, guid: 5c94562cfa412cc90adaae36f7101326, type: 2}

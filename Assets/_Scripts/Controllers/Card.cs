@@ -48,5 +48,7 @@ public class Card : MonoBehaviour
         newUnit.GetComponent<UnitBase>().unitData = unit;
 
         newUnit.GetComponent<UnitBase>().isPlayer = true;
+
+        CardsManager.Instance.Invoke("SpawnCard", 1f);
     }
 }
