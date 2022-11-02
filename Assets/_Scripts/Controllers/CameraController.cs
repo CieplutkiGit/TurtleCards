@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraController : Singleton<CameraController>
 {
-    public float _buffer;
+    public float buffer;
 
     private Camera _cam;
 
@@ -21,7 +21,7 @@ public class CameraController : Singleton<CameraController>
         foreach (var col in MapManager.Instance.tilesColliders)
         bounds.Encapsulate(col.bounds);
 
-        bounds.Expand (_buffer);
+        bounds.Expand (buffer);
 
         float vertical = bounds.size.y;
 

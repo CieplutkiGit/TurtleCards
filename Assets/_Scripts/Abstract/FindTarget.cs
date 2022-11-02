@@ -26,11 +26,11 @@ public abstract class FindTarget : MonoBehaviour
         if (targets.Count ==0)
             return (null, false);
 
-        var target = FindClosestEnemy(targets,transform).target;
+        var target = FindClosestEnemy(targets,transform);
         return (target, true);
     }
 
-    public static (Transform target, bool found)
+    public static Transform
     FindClosestEnemy(List<Transform> targets, Transform transform)
     {
         Transform closest = null;
@@ -47,6 +47,6 @@ public abstract class FindTarget : MonoBehaviour
                 distance = curDistance;
             }
         }
-        return (closest, true);
+        return (closest);
     }
 }
