@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIController : Singleton<UIController>
@@ -9,7 +8,7 @@ public class UIController : Singleton<UIController>
 
     public Canvas mainCanvas;
 
-    public (GameObject card, int cardID)
+    public GameObject
     SpawnCards(CardScriptableObject cardToSpawn)
     {
         GameObject Card = Instantiate(cardPrefab, botPanel.transform);
@@ -21,6 +20,6 @@ public class UIController : Singleton<UIController>
         cardScript.canvas = mainCanvas;
         cardScript.unit = cardToSpawn.unit;
 
-        return (Card, cardScript.cardID);
+        return (Card);
     }
 }

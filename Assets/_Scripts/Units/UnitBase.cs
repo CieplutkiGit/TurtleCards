@@ -5,97 +5,91 @@ public class UnitBase : MonoBehaviour
 {
     public UnitScriptableObject unitData;
 
-    float maxHealth;
+    private float _maxHealth;
 
-    float health;
+    private float _health;
 
-    float attackDamage;
+    private float _attackDamage;
 
-    float attackRate;
+    private float _attackRate;
 
-    float timeToNextAttack;
+    private float _timeToNextAttack;
 
-    float attackRange;
+    private float _attackRange;
 
-    float moveSpeed;
+    private float _moveSpeed;
 
-    Transform enemyBase;
+    private Transform _enemyBase;
 
-    Transform target;
+    private Transform _target;
 
     public bool isPlayer;
 
-    Image healthBar;
+    private Image _healthBar;
 
-    bool isBuilding;
+    private bool _isBuilding;
 
     private void Start()
     {
-        maxHealth = unitData.maxHealth;
-        attackDamage = unitData.attackDamage;
-        attackRate = unitData.attackRate;
-        attackRange = unitData.attackRange;
-        moveSpeed = unitData.moveSpeed;
-        enemyBase = unitData.enemyBase;
-        isBuilding = unitData.isBuilding;
+        _maxHealth = unitData.maxHealth;
+        _attackDamage = unitData.attackDamage;
+        _attackRate = unitData.attackRate;
+        _attackRange = unitData.attackRange;
+        _moveSpeed = unitData.moveSpeed;
+        _enemyBase = unitData.enemyBase;
+        _isBuilding = unitData.isBuilding;
 
-        health = maxHealth;
+        _health = _maxHealth;
 
-        if (!isPlayer) enemyBase = unitData.playerBase;
+        if (!isPlayer) _enemyBase = unitData.playerBase;
 
-        healthBar = GetComponentInChildren<Image>();
+        _healthBar = GetComponentInChildren<Image>();
     }
 
     private void Update()
     {
-        var target = FindTarget.GetTarget(transform, isPlayer, attackRange);
-        if (!isBuilding)
+        var target = FindTarget.GetTarget(transform, isPlayer, _attackRange);
+        if (!_isBuilding)
         {
             if (target.hasTarget)
                 MoveToTarget(target.transform);
             else
-                MoveToTarget(enemyBase);
+                MoveToTarget(_enemyBase);
         }
-        else if (target.hasTarget)
-            Attack(target.transform);
+        else if (target.hasTarget) Attack(target.transform);
 
-        if (timeToNextAttack > 0) timeToNextAttack -= 1 * Time.deltaTime;
+        if (_timeToNextAttack > 0) _timeToNextAttack -= 1 * Time.deltaTime;
     }
 
     void MoveToTarget(Transform target)
     {
-        if (Vector3.Distance(transform.position, target.position) <= attackRange
-        )
+        if (Vector3.Distance(transform.position, target.position) <=_attackRange)
             Attack(target);
         else
             transform.position =
                 Vector3
                     .MoveTowards(transform.position,
                     target.position,
-                    moveSpeed * Time.deltaTime);
+                    _moveSpeed * Time.deltaTime);
     }
 
     void Attack(Transform enemy)
     {
-        if (timeToNextAttack <= 0)
+        if (_timeToNextAttack <= 0)
         {
-            enemy.GetComponent<UnitBase>().TakeDamage(attackDamage);
-            timeToNextAttack = attackRate;
+            enemy.GetComponent<UnitBase>().TakeDamage(_attackDamage);
+            _timeToNextAttack = _attackRate;
         }
     }
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        _health -= damage;
         UpdateHealthBar();
-        if (health <= 0) Die();
+        if (_health <= 0) Die();
     }
 
-    void UpdateHealthBar() => healthBar.fillAmount = health / maxHealth;
+    void UpdateHealthBar() => _healthBar.fillAmount = _health / _maxHealth;
 
-    void Die()
-    {
-        Destroy (gameObject);
-        Debug.Log(":<");
-    }
+    void Die() => Destroy(gameObject);
 }

@@ -19,7 +19,7 @@ public class CardsManager : Singleton<CardsManager>
     public void GetPlayerCards()
     {
         playerCards = new CardScriptableObject[7];
-        PlayerPrefs.SetString("Cards", "1|1|3|2|0|1|3|2");
+        PlayerPrefs.SetString("Cards", "0|1|2|3|1|1|3|2");
         string[] cardsID = PlayerPrefs.GetString("Cards").Split("|");
 
         for (int i = 0; i < playerCards.Length; i++)
@@ -34,15 +34,14 @@ public class CardsManager : Singleton<CardsManager>
 
     public void SpawnCard()
     {
-
         if (nextCard >= playerCards.Length) nextCard = 0;
 
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i] == null)
             {
-                var x = UIController.Instance.SpawnCards(playerCards[nextCard]);
-                slots[i] = x.card;
+                var card = UIController.Instance.SpawnCards(playerCards[nextCard]);
+                slots[i] = card;
                 break;
             }
         }

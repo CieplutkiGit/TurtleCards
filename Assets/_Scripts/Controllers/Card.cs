@@ -13,11 +13,11 @@ public class Card : MonoBehaviour
 
     public float dropOffset;
 
-    private Vector3 startPosition;
+    private Vector3 _startPosition;
 
     private void OnEnable()
     {
-        startPosition = transform.position;
+        _startPosition = transform.position;
     }
 
     public void DragHandler(BaseEventData data)
@@ -37,7 +37,7 @@ public class Card : MonoBehaviour
 
     public void DropHandler(BaseEventData data)
     {
-        if (transform.position.z < startPosition.z + dropOffset) return;
+        if (transform.position.z < _startPosition.z + dropOffset) return;
         Destroy(this.transform.gameObject);
 
         GameObject newUnit =
